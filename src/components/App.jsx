@@ -19,6 +19,8 @@ export class App extends Component {
   };
 
   createContact = ({ name, number }) => {
+    name = name.trim();
+
     if (
       this.state.contacts.find(
         contact => name.toLowerCase() === contact.name.toLowerCase()
@@ -43,13 +45,13 @@ export class App extends Component {
 
   filterContacts = () => {
     return this.state.contacts.filter(({ name }) =>
-      name.includes(this.state.filter)
+      name.toLowerCase().includes(this.state.filter)
     );
   };
 
   handleFilter = evt => {
     this.setState({
-      filter: evt.target.value,
+      filter: evt.target.value.toLowerCase(),
     });
   };
 
